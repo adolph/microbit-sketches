@@ -1,30 +1,36 @@
 input.onButtonPressed(Button.A, function () {
-    if (Position >= 500) {
-        Position = Position - Amount
+    if (Position <= Max) {
+        Position = Position + Amount
         pins.servoSetPulse(AnalogPin.P0, Position)
     }
 })
 input.onButtonPressed(Button.AB, function () {
-    Position = 1500
+    Position = Mid
     pins.servoSetPulse(AnalogPin.P0, Position)
 })
 input.onButtonPressed(Button.B, function () {
-    if (Position <= 2500) {
-        Position = Position + Amount
+    if (Position >= Min) {
+        Position = Position - Amount
         pins.servoSetPulse(AnalogPin.P0, Position)
     }
 })
 input.onGesture(Gesture.Shake, function () {
     basic.showString("" + (Position))
 })
-let Amount = 0
 let Position = 0
-Position = 500
-pins.servoSetPulse(AnalogPin.P0, Position)
-basic.pause(1000)
-Position = 2500
-pins.servoSetPulse(AnalogPin.P0, Position)
-basic.pause(1000)
-Position = 1500
-pins.servoSetPulse(AnalogPin.P0, Position)
+let Amount = 0
+let Max = 0
+let Mid = 0
+let Min = 0
+Min = 500
+Mid = 1500
+Max = 2500
 Amount = 100
+Position = Min
+pins.servoSetPulse(AnalogPin.P0, Position)
+basic.pause(2000)
+Position = Max
+pins.servoSetPulse(AnalogPin.P0, Position)
+basic.pause(2000)
+Position = Mid
+pins.servoSetPulse(AnalogPin.P0, Position)
