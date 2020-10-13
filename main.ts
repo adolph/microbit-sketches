@@ -1,6 +1,6 @@
 input.onButtonPressed(Button.A, function () {
-    if (Position > 500) {
-        Position = Position + Amount
+    if (Position >= 500) {
+        Position = Position - Amount
         pins.servoSetPulse(AnalogPin.P0, Position)
     }
 })
@@ -9,10 +9,13 @@ input.onButtonPressed(Button.AB, function () {
     pins.servoSetPulse(AnalogPin.P0, Position)
 })
 input.onButtonPressed(Button.B, function () {
-    if (Position < 2500) {
-        Position = Position - Amount
+    if (Position <= 2500) {
+        Position = Position + Amount
         pins.servoSetPulse(AnalogPin.P0, Position)
     }
+})
+input.onGesture(Gesture.Shake, function () {
+    basic.showString("" + (Position))
 })
 let Amount = 0
 let Position = 0
